@@ -13,6 +13,44 @@ const prisma = new PrismaClient();
 app.use(cors());
 app.use(express.json());
 
+// Health check pour Railway
+app.get('/', (req, res) => {
+  res.status(200).json({ 
+    status: 'OK',
+    message: 'Backend Railway fonctionne !', 
+    timestamp: new Date().toISOString(),
+    port: process.env.PORT || 3001
+  });
+});
+
+// Test sans base de données
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'healthy',
+    database: 'connected',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Test de la base de données
+app.get('/db-test', async (req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    res.status(200).json({ 
+      status: 'OK',
+      database: 'connected successfully',
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Database test error:', error);
+    res.status(500).json({ 
+      status: 'ERROR',
+      database: 'connection failed',
+      error: error.message
+    });
+  }
+});
+
 // Fonction pour créer un dossier s'il n'existe pas
 const ensureDirectoryExists = (dirPath) => {
   if (!fs.existsSync(dirPath)) {
@@ -1452,6 +1490,26 @@ app.get('/api/histoires/annee/:annee', async (req, res) => {
 // });
 
 const PORT = process.env.PORT || 3001;
+
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Serveur backend lancé sur le port ${PORT}`);
+  console.log(`🚀 Serveur backend lancé sur le port ${PORT}`);
+  console.log(`🌐 URL: https://fermebossejauque-backend-production.up.railway.app`);
+  
+  // Test de connexion DB au démarrage
+  prisma.$connect()
+    .then(() => console.log('✅ Base de données connectée'))
+    .catch(err => console.error('❌ Erreur DB:', err));
+});
+
+// Gestion propre de l'arrêt
+process.on('SIGINT', async () => {
+  console.log('🛑 Arrêt du serveur...');
+  await prisma.$disconnect();
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  console.log('🛑 Arrêt du serveur...');
+  await prisma.$disconnect();
+  process.exit(0);
 });
