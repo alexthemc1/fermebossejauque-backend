@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "npx prisma migrate deploy && node src/index.js",
+    "start": "npx prisma migrate deploy && npx prisma generate && node src/index.js",
     "dev": "node src/index.js",
     "build": "prisma generate",
     "postinstall": "prisma generate"
