@@ -1447,7 +1447,11 @@ app.get('/api/histoires/annee/:annee', async (req, res) => {
 });
 
 
-app.listen(3001, () => {
-  console.log('Serveur backend lancé sur http://localhost:3001');
-});
+// app.listen(3001, () => {
+//   console.log('Serveur backend lancé sur http://localhost:3001');
+// });
 
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Serveur backend lancé sur le port ${PORT}`);
+});
