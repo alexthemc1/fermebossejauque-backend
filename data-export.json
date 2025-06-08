@@ -1,0 +1,468 @@
+{
+  "users": [
+    {
+      "id": 2,
+      "username": "admine",
+      "password": "test",
+      "role": "admin",
+      "createdAt": "2025-05-22T10:18:24.522Z",
+      "updatedAt": "2025-05-22T10:28:55.909Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "nom": "evenements",
+      "description": "les evenements"
+    },
+    {
+      "id": 2,
+      "nom": "recettes",
+      "description": "les recettes"
+    }
+  ],
+  "annonces": [
+    {
+      "id": 36,
+      "titre": "Boucherie chez Paul",
+      "description": "FFF",
+      "imageUrl": "/public/uploads/annonces/36/main.JPG",
+      "new": true,
+      "datecreation": "2025-06-04T11:11:05.240Z",
+      "categorieId": 2
+    },
+    {
+      "id": 32,
+      "titre": "Découverte de la ferme",
+      "description": "Envie d’un plat réconfortant, savoureux et facile à préparer ? Le rosbif au four est un incontourna...\n\n",
+      "imageUrl": "/public/uploads/annonces/32/main.jpg",
+      "new": false,
+      "datecreation": "2025-06-02T17:51:53.995Z",
+      "categorieId": 2
+    },
+    {
+      "id": 38,
+      "titre": "Découverte de la ferme",
+      "description": "b",
+      "imageUrl": "/public/uploads/annonces/38/main.jpg",
+      "new": true,
+      "datecreation": "2025-06-04T16:32:20.756Z",
+      "categorieId": 1
+    },
+    {
+      "id": 37,
+      "titre": "Découverte de la ferme",
+      "description": "Envie d’un plat réconfortant, savoureux et facile à préparer ? Le rosbif au four est un incontourna...\n\n",
+      "imageUrl": "/public/uploads/annonces/37/main.jpg",
+      "new": true,
+      "datecreation": "2025-06-04T11:12:53.068Z",
+      "categorieId": 1
+    },
+    {
+      "id": 35,
+      "titre": "Découverte de la ferme avec la famille ! ",
+      "description": "FDFFSF",
+      "imageUrl": "/public/uploads/annonces/35/main.JPG",
+      "new": true,
+      "datecreation": "2025-06-04T11:10:47.136Z",
+      "categorieId": 2
+    },
+    {
+      "id": 25,
+      "titre": "Découverte de la ferme",
+      "description": "Enfin, une zone Contact regroupera toutes les informations essentielles : les horaires d’ouverture du magasin et de la boucherie, les numéros de téléphone, l’adresse e-mail, ainsi qu’une section dédiée aux modalités de paiement. Une carte Google Maps sera également intégrée afin de permettre aux visiteurs de localiser facilement la ferme et d’obtenir un itinéraire directement depuis leur position.\nChaque information sera cliquable, afin d’ouvrir automatiquement une application spécifique installée sur l’ordinateur ou le mobile de l’utilisateur. Par exemple, un clic sur l’adresse e-mail ouvrira le service de",
+      "imageUrl": "/public/uploads/annonces/25/main.JPG",
+      "new": true,
+      "datecreation": "2025-05-25T10:02:42.500Z",
+      "categorieId": 1
+    },
+    {
+      "id": 31,
+      "titre": "Rosbif au four classique",
+      "description": "Envie d’un plat réconfortant, savoureux et facile à préparer ? \nLe rosbif au four est un incontournable qui régale petits et grands. \nTendre, juteux et parfumé, il se prépare en un clin d’œil et fait toujours son petit effet à table. \nSuivez cette recette simple pour réussir votre rôti à tous les coups !",
+      "imageUrl": "/public/uploads/annonces/31/main.jpg",
+      "new": true,
+      "datecreation": "2025-05-31T16:02:04.781Z",
+      "categorieId": 2
+    }
+  ],
+  "commerces": [
+    {
+      "id": 1,
+      "titre": "Magasin de la Ferme",
+      "description": "Au magasin de la ferme, retrouvez le bon goût d’autrefois avec nos légumes de saison fraîchement récoltés (salades, poireaux, pommes de terre, oignons, champignons…), des fruits du verger, ainsi qu’une belle sélection de produits laitiers de vache et de chèvre : fromages, yaourts, glaces artisanales. Vous y trouverez aussi œufs frais, pains rustiques, pâtisseries maison, confitures et jus de fruits. Les paiements se font sur place, et l’ouverture suit nos horaires affichés. Ici, tout est simple, local, et fait avec soin.",
+      "imageUrl": "/public/uploads/commerces/1/main.JPG",
+      "type": "MAGASIN",
+      "datecreation": "2025-05-22T11:34:04.857Z",
+      "telephone": "+32 496 31 39 86"
+    },
+    {
+      "id": 2,
+      "titre": "Boucherie chez Paul",
+      "description": "Dans notre boucherie, vous trouverez de la viande fraîche et locale : bœuf, veau, porc et agneau élevés à la ferme, dans le respect des animaux et des saisons.\n\nToutes les pièces sont préparées sur place : steaks, rôtis, côtes, saucisses, merguez, pâtés… De quoi régaler petits et grands, pour vos repas du quotidien ou vos moments festifs",
+      "imageUrl": "/public/uploads/commerces/2/main.JPG",
+      "type": "BOUCHERIE",
+      "datecreation": "2025-05-22T11:35:21.387Z",
+      "telephone": "+32 476 03 29 69"
+    }
+  ],
+  "horaires": [
+    {
+      "id": 5,
+      "jour": "Jeudi",
+      "ouverture": "13h30",
+      "fermeture": "19h00",
+      "status": true,
+      "typecommerce": "MAGASIN"
+    },
+    {
+      "id": 6,
+      "jour": "Vendredi",
+      "ouverture": "13h30",
+      "fermeture": "19h00",
+      "status": true,
+      "typecommerce": "MAGASIN"
+    },
+    {
+      "id": 7,
+      "jour": "Samedi",
+      "ouverture": "10h00",
+      "fermeture": "18h00",
+      "status": true,
+      "typecommerce": "MAGASIN"
+    },
+    {
+      "id": 11,
+      "jour": "Mercredi",
+      "ouverture": "13h30",
+      "fermeture": "19h00",
+      "status": true,
+      "typecommerce": "BOUCHERIE"
+    },
+    {
+      "id": 12,
+      "jour": "Jeudi",
+      "ouverture": "13h30",
+      "fermeture": "19h00",
+      "status": true,
+      "typecommerce": "BOUCHERIE"
+    },
+    {
+      "id": 13,
+      "jour": "Vendredi",
+      "ouverture": "13h30",
+      "fermeture": "19h00",
+      "status": true,
+      "typecommerce": "BOUCHERIE"
+    },
+    {
+      "id": 14,
+      "jour": "Samedi",
+      "ouverture": "10h00",
+      "fermeture": "18h00",
+      "status": true,
+      "typecommerce": "BOUCHERIE"
+    },
+    {
+      "id": 9,
+      "jour": "Dimanche",
+      "ouverture": "",
+      "fermeture": "",
+      "status": false,
+      "typecommerce": "MAGASIN"
+    },
+    {
+      "id": 16,
+      "jour": "Mardi",
+      "ouverture": "13:00",
+      "fermeture": "19:40",
+      "status": false,
+      "typecommerce": "MAGASIN"
+    },
+    {
+      "id": 4,
+      "jour": "Mercredi",
+      "ouverture": "13h30",
+      "fermeture": "19h00",
+      "status": true,
+      "typecommerce": "MAGASIN"
+    },
+    {
+      "id": 17,
+      "jour": "Dimanche",
+      "ouverture": "09h30",
+      "fermeture": "18h30",
+      "status": false,
+      "typecommerce": "BOUCHERIE"
+    },
+    {
+      "id": 18,
+      "jour": "Mardi",
+      "ouverture": "00h00",
+      "fermeture": "00h00",
+      "status": false,
+      "typecommerce": "BOUCHERIE"
+    },
+    {
+      "id": 19,
+      "jour": "Lundi",
+      "ouverture": "00h00",
+      "fermeture": "00h00",
+      "status": false,
+      "typecommerce": "BOUCHERIE"
+    },
+    {
+      "id": 30,
+      "jour": "Lundi",
+      "ouverture": "13:30",
+      "fermeture": "19:00",
+      "status": true,
+      "typecommerce": "MAGASIN"
+    }
+  ],
+  "histoires": [
+    {
+      "id": 2,
+      "titre": "création de la ferme",
+      "annee": 1997,
+      "description": "vsfdftgbngvfnhgn",
+      "imageUrl": "histoire1.jpg"
+    },
+    {
+      "id": 3,
+      "titre": "création de la ferme",
+      "annee": 800,
+      "description": "vsfdftgbngvfnhgn",
+      "imageUrl": "histoire1.jpg"
+    },
+    {
+      "id": 1,
+      "titre": "création de la ferme",
+      "annee": 1976,
+      "description": "Richard Baillez, originaire du charmant village de Gibecq, et son épouse Mariette, tous deux issus de familles enracinées dans le milieu Agricole décident d’acquérir  la petite ferme de la Bosse Jauque, nichée dans un vallon bucolique et verdoyant aux portes de Gibecq.",
+      "imageUrl": "histoire3.jpg"
+    }
+  ],
+  "galerie": [
+    {
+      "id": 62,
+      "imageUrl": "/public/uploads/annonces/25/galerie-1748167375314.jpg",
+      "description": "",
+      "annonceId": 25,
+      "createdAt": "2025-05-25T10:02:55.369Z"
+    },
+    {
+      "id": 63,
+      "imageUrl": "/public/uploads/annonces/25/galerie-1748167382512.jpg",
+      "description": "",
+      "annonceId": 25,
+      "createdAt": "2025-05-25T10:03:02.566Z"
+    },
+    {
+      "id": 64,
+      "imageUrl": "/public/uploads/annonces/25/galerie-1748167389363.jpg",
+      "description": "",
+      "annonceId": 25,
+      "createdAt": "2025-05-25T10:03:09.449Z"
+    },
+    {
+      "id": 66,
+      "imageUrl": "/public/uploads/annonces/37/galerie-1749041101687.JPG",
+      "description": "",
+      "annonceId": 37,
+      "createdAt": "2025-06-04T12:45:01.829Z"
+    },
+    {
+      "id": 67,
+      "imageUrl": "/public/uploads/annonces/37/galerie-1749041145793.JPG",
+      "description": "description de l'image",
+      "annonceId": 37,
+      "createdAt": "2025-06-04T12:45:45.903Z"
+    }
+  ],
+  "annoncesSections": [
+    {
+      "id": 48,
+      "annonceId": 31,
+      "ordre": 4,
+      "type": "TITRE",
+      "contenu": "Préparation :",
+      "imageUrl": null,
+      "videoUrl": "",
+      "createdAt": "2025-05-31T16:03:18.569Z",
+      "updatedAt": "2025-05-31T16:06:08.921Z"
+    },
+    {
+      "id": 47,
+      "annonceId": 31,
+      "ordre": 3,
+      "type": "IMAGE",
+      "contenu": "rosbif",
+      "imageUrl": "/public/uploads/annonces/31/section-1748707560609.jpg",
+      "videoUrl": "",
+      "createdAt": "2025-05-31T16:03:04.829Z",
+      "updatedAt": "2025-05-31T16:07:19.029Z"
+    },
+    {
+      "id": 34,
+      "annonceId": 25,
+      "ordre": 1,
+      "type": "TITRE",
+      "contenu": "Découverte de la ferme",
+      "imageUrl": null,
+      "videoUrl": "",
+      "createdAt": "2025-05-25T10:02:42.601Z",
+      "updatedAt": "2025-05-25T10:03:27.874Z"
+    },
+    {
+      "id": 35,
+      "annonceId": 25,
+      "ordre": 2,
+      "type": "IMAGE",
+      "contenu": "image de test",
+      "imageUrl": "/public/uploads/annonces/25/section-1748167426498.jpg",
+      "videoUrl": "",
+      "createdAt": "2025-05-25T10:03:46.615Z",
+      "updatedAt": "2025-05-25T10:03:46.615Z"
+    },
+    {
+      "id": 36,
+      "annonceId": 25,
+      "ordre": 3,
+      "type": "PARAGRAPHE",
+      "contenu": "i qu’une section dédiée aux modalités de paiement. Une carte Google Maps \n\nsera également intégrée afin de permettre aux visiteurs de localiser facilement la ferme et d’obtenir un itinéraire directement depuis leur position. Chaque information sera cliquable, \n\nafin d’ouvrir automatiquement une application spécifique installée sur l’ordinateur ou le mobile de l’utilisateur. Par exemple, un clic sur l’adresse e-mail ouvrira le service de",
+      "imageUrl": null,
+      "videoUrl": "",
+      "createdAt": "2025-05-25T10:04:07.424Z",
+      "updatedAt": "2025-05-25T10:04:07.424Z"
+    },
+    {
+      "id": 37,
+      "annonceId": 25,
+      "ordre": 4,
+      "type": "VIDEO",
+      "contenu": "lien de la video",
+      "imageUrl": null,
+      "videoUrl": "https://www.youtube.com/watch?v=Sz5l9ub8XzY",
+      "createdAt": "2025-05-25T10:04:16.258Z",
+      "updatedAt": "2025-05-27T18:07:19.922Z"
+    },
+    {
+      "id": 45,
+      "annonceId": 31,
+      "ordre": 1,
+      "type": "TITRE",
+      "contenu": "Ingrédients (pour 4 à 6 personnes) :",
+      "imageUrl": null,
+      "videoUrl": "",
+      "createdAt": "2025-05-31T16:02:04.870Z",
+      "updatedAt": "2025-05-31T16:02:34.475Z"
+    },
+    {
+      "id": 46,
+      "annonceId": 31,
+      "ordre": 2,
+      "type": "PARAGRAPHE",
+      "contenu": "1 rôti de bœuf (rosbif) de 1 à 1,2 kg (dans le rumsteck ou filet)\n\n2 cuillères à soupe d’huile d’olive\n\n2 branches de romarin (ou thym)\n\n3 gousses d’ail\n\n1 cuillère à soupe de moutarde (facultatif)\n\nSel, poivre\n\nBeurre (facultatif pour arroser en fin de cuisson)",
+      "imageUrl": null,
+      "videoUrl": "",
+      "createdAt": "2025-05-31T16:02:49.643Z",
+      "updatedAt": "2025-05-31T16:02:49.643Z"
+    },
+    {
+      "id": 50,
+      "annonceId": 31,
+      "ordre": 5,
+      "type": "PARAGRAPHE",
+      "contenu": "Préchauffage du four :\nPréchauffe ton four à 220°C (thermostat 7-8).\n\nPréparation du rôti :\n\nSors le rôti du frigo 30 min avant cuisson pour qu’il soit à température ambiante.\n\nFrotte-le avec l’huile d’olive, du sel, du poivre, et éventuellement la moutarde.\n\nAjoute quelques feuilles de romarin et les gousses d’ail écrasées tout autour.\n\nCuisson :\n\nPlace le rôti dans un plat allant au four.\n\nEnfourne à 220°C pendant 15 minutes pour bien le saisir.\n\nPuis, baisse à 180°C et poursuis la cuisson pendant 10 à 12 minutes par 500 g, selon la cuisson souhaitée (rosé ou à point).\n👉 Exemple : pour 1 kg = environ 25 à 30 minutes.\n\nRepos :\n\nÀ la sortie du four, couvre le rôti d’une feuille de papier aluminium sans le serrer.\n\nLaisse reposer 10 à 15 minutes : cela permet au jus de bien se répartir dans la viande.",
+      "imageUrl": null,
+      "videoUrl": "",
+      "createdAt": "2025-05-31T16:05:29.009Z",
+      "updatedAt": "2025-05-31T16:12:21.427Z"
+    },
+    {
+      "id": 51,
+      "annonceId": 32,
+      "ordre": 1,
+      "type": "PARAGRAPHE",
+      "contenu": "u",
+      "imageUrl": null,
+      "videoUrl": null,
+      "createdAt": "2025-06-02T17:51:54.082Z",
+      "updatedAt": "2025-06-02T17:51:54.082Z"
+    },
+    {
+      "id": 54,
+      "annonceId": 35,
+      "ordre": 1,
+      "type": "PARAGRAPHE",
+      "contenu": "FDFFSF",
+      "imageUrl": null,
+      "videoUrl": null,
+      "createdAt": "2025-06-04T11:10:47.613Z",
+      "updatedAt": "2025-06-04T11:10:47.613Z"
+    },
+    {
+      "id": 55,
+      "annonceId": 36,
+      "ordre": 1,
+      "type": "PARAGRAPHE",
+      "contenu": "FFF",
+      "imageUrl": null,
+      "videoUrl": null,
+      "createdAt": "2025-06-04T11:11:05.301Z",
+      "updatedAt": "2025-06-04T11:11:05.301Z"
+    },
+    {
+      "id": 56,
+      "annonceId": 37,
+      "ordre": 1,
+      "type": "PARAGRAPHE",
+      "contenu": "D",
+      "imageUrl": null,
+      "videoUrl": null,
+      "createdAt": "2025-06-04T11:12:53.132Z",
+      "updatedAt": "2025-06-04T11:12:53.132Z"
+    }
+  ],
+  "commercesSections": [
+    {
+      "id": 5,
+      "commerceId": 1,
+      "ordre": 1,
+      "type": "TITRE",
+      "contenu": "Bienvenue à la ferme",
+      "imageUrl": null,
+      "videoUrl": "",
+      "createdAt": "2025-06-02T08:34:03.184Z",
+      "updatedAt": "2025-06-02T11:06:31.882Z"
+    },
+    {
+      "id": 11,
+      "commerceId": 2,
+      "ordre": 1,
+      "type": "VIDEO",
+      "contenu": "",
+      "imageUrl": null,
+      "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "createdAt": "2025-06-07T16:32:03.521Z",
+      "updatedAt": "2025-06-07T16:32:03.521Z"
+    }
+  ],
+  "commercesGalerie": [
+    {
+      "id": 5,
+      "imageUrl": "/public/uploads/commerces/1/galerie-1748859521146.JPG",
+      "description": "",
+      "commerceId": 1,
+      "createdAt": "2025-06-02T10:18:41.219Z"
+    },
+    {
+      "id": 6,
+      "imageUrl": "/public/uploads/commerces/1/galerie-1748859569221.JPG",
+      "description": "",
+      "commerceId": 1,
+      "createdAt": "2025-06-02T10:19:29.330Z"
+    }
+  ]
+}

@@ -11,13 +11,11 @@
   },
   "dependencies": {
     "@prisma/client": "^6.6.0",
+    "cloudinary": "^2.6.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "multer": "^2.0.0",
     "prisma": "^6.6.0"
-  },
-  "devDependencies": {
-    
   }
 }

@@ -5,6 +5,13 @@ import { PrismaClient } from './generated/prisma/index.js';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import { v2 as cloudinary } from 'cloudinary';
+
+cloudinary.config({
+  cloud_name: 'dohb53xvy',
+  api_key: '217723268397834',
+  api_secret: '-VjyfExVfUedQVGrVC6mGi_x3F0'
+});
 
 dotenv.config();
 const app = express();
@@ -192,18 +199,20 @@ const uploadSection = multer({
 app.use('/public', express.static(path.join(process.cwd(), 'public')));
 
 // Endpoint pour télécharger une image temporaire (lors de la création d'annonce)
-app.post('/api/upload/temp', uploadTemp.single('image'), (req, res) => {
+app.post('/api/upload/temp', uploadTemp.single('image'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'Aucun fichier téléchargé' });
     }
     
-    const fileUrl = `/public/uploads/temp/${req.file.filename}`;
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: 'temp'
+    });
     
     res.json({ 
       success: true, 
-      imageUrl: fileUrl,
-      tempPath: req.file.path,
+      imageUrl: result.secure_url,
+      tempPath: result.public_id,
       message: 'Image téléchargée temporairement avec succès'
     });
   } catch (error) {
@@ -213,18 +222,20 @@ app.post('/api/upload/temp', uploadTemp.single('image'), (req, res) => {
 });
 
 // Endpoint pour télécharger une image pour une annonce existante
-app.post('/api/upload/annonce/:id', uploadAnnonceMain.single('image'), (req, res) => {
+app.post('/api/upload/annonce/:id', uploadTemp.single('image'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'Aucun fichier téléchargé' });
     }
     
-    const annonceId = req.params.id;
-    const fileUrl = `/public/uploads/annonces/${annonceId}/${req.file.filename}`;
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: `annonces/${req.params.id}`,
+      public_id: 'main'
+    });
     
     res.json({ 
       success: true, 
-      imageUrl: fileUrl,
+      imageUrl: result.secure_url,
       message: 'Image téléchargée avec succès'
     });
   } catch (error) {
@@ -233,19 +244,20 @@ app.post('/api/upload/annonce/:id', uploadAnnonceMain.single('image'), (req, res
   }
 });
 
-// Endpoint pour télécharger une image pour une annonce existante
-app.post('/api/upload/galerie/:id', uploadGalerie.single('image'), (req, res) => {
+// Endpoint pour télécharger une image de galerie
+app.post('/api/upload/galerie/:id', uploadTemp.single('image'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'Aucun fichier téléchargé' });
     }
     
-    const annonceId = req.params.id;
-    const fileUrl = `/public/uploads/annonces/${annonceId}/${req.file.filename}`;
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: `annonces/${req.params.id}/galerie`
+    });
     
     res.json({ 
       success: true, 
-      imageUrl: fileUrl,
+      imageUrl: result.secure_url,
       message: 'Image de galerie téléchargée avec succès'
     });
   } catch (error) {
@@ -254,19 +266,20 @@ app.post('/api/upload/galerie/:id', uploadGalerie.single('image'), (req, res) =>
   }
 });
 
-// Endpoint pour télécharger une image pour une annonce existante
-app.post('/api/upload/section/:id', uploadSection.single('image'), (req, res) => {
+// Endpoint pour télécharger une image de section
+app.post('/api/upload/section/:id', uploadTemp.single('image'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'Aucun fichier téléchargé' });
     }
     
-    const annonceId = req.params.id;
-    const fileUrl = `/public/uploads/annonces/${annonceId}/${req.file.filename}`;
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: `annonces/${req.params.id}/sections`
+    });
     
     res.json({ 
       success: true, 
-      imageUrl: fileUrl,
+      imageUrl: result.secure_url,
       message: 'Image de section téléchargée avec succès'
     });
   } catch (error) {
@@ -1196,18 +1209,20 @@ const uploadCommerceSection = multer({
   fileFilter: fileFilter
 });
 // Endpoint pour télécharger une image principale pour un commerce
-app.post('/api/upload/commerce/:id', uploadCommerceMain.single('image'), (req, res) => {
+app.post('/api/upload/commerce/:id', uploadTemp.single('image'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'Aucun fichier téléchargé' });
     }
     
-    const commerceId = req.params.id;
-    const fileUrl = `/public/uploads/commerces/${commerceId}/${req.file.filename}`;
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: `commerces/${req.params.id}`,
+      public_id: 'main'
+    });
     
     res.json({ 
       success: true, 
-      imageUrl: fileUrl,
+      imageUrl: result.secure_url,
       message: 'Image de commerce téléchargée avec succès'
     });
   } catch (error) {
@@ -1217,18 +1232,19 @@ app.post('/api/upload/commerce/:id', uploadCommerceMain.single('image'), (req, r
 });
 
 // Endpoint pour télécharger une image de galerie pour un commerce
-app.post('/api/upload/commerce-galerie/:id', uploadCommerceGalerie.single('image'), (req, res) => {
+app.post('/api/upload/commerce-galerie/:id', uploadTemp.single('image'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'Aucun fichier téléchargé' });
     }
     
-    const commerceId = req.params.id;
-    const fileUrl = `/public/uploads/commerces/${commerceId}/${req.file.filename}`;
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: `commerces/${req.params.id}/galerie`
+    });
     
     res.json({ 
       success: true, 
-      imageUrl: fileUrl,
+      imageUrl: result.secure_url,
       message: 'Image de galerie de commerce téléchargée avec succès'
     });
   } catch (error) {
@@ -1238,18 +1254,19 @@ app.post('/api/upload/commerce-galerie/:id', uploadCommerceGalerie.single('image
 });
 
 // Endpoint pour télécharger une image de section pour un commerce
-app.post('/api/upload/commerce-section/:id', uploadCommerceSection.single('image'), (req, res) => {
+app.post('/api/upload/commerce-section/:id', uploadTemp.single('image'), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ message: 'Aucun fichier téléchargé' });
     }
     
-    const commerceId = req.params.id;
-    const fileUrl = `/public/uploads/commerces/${commerceId}/${req.file.filename}`;
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: `commerces/${req.params.id}/sections`
+    });
     
     res.json({ 
       success: true, 
-      imageUrl: fileUrl,
+      imageUrl: result.secure_url,
       message: 'Image de section de commerce téléchargée avec succès'
     });
   } catch (error) {
