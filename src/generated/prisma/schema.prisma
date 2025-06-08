@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CategorieAnnonce {
+  id          Int        @id @default(autoincrement())
+  nom         String     @unique
+  description String?
+  annonces    Annonces[]
+}
+
+model Annonces {
+  id           Int               @id @default(autoincrement())
+  titre        String
+  description  String
+  imageUrl     String
+  datecreation DateTime          @default(now())
+  new          Boolean           @default(true)
+  categorieId  Int?
+  categorie    CategorieAnnonce? @relation(fields: [categorieId], references: [id])
+  galerie      Galerie[]
+  sections     AnnonceSection[]
+}
+
+model Galerie {
+  id          Int      @id @default(autoincrement())
+  imageUrl    String
+  description String?
+  annonceId   Int
+  annonce     Annonces @relation(fields: [annonceId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+}
+
+model AnnonceSection {
+  id        Int         @id @default(autoincrement())
+  annonceId Int
+  annonce   Annonces    @relation(fields: [annonceId], references: [id], onDelete: Cascade)
+  ordre     Int
+  type      TypeSection
+  contenu   String
+  imageUrl  String?
+  videoUrl  String?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+enum TypeSection {
+  TITRE
+  PARAGRAPHE
+  IMAGE
+  VIDEO
+}
+
+enum TypeCommerce {
+  MAGASIN
+  BOUCHERIE
+}
+
+model Horaire {
+  id           Int          @id @default(autoincrement())
+  jour         String
+  ouverture    String
+  fermeture    String
+  status       Boolean      @default(true)
+  typecommerce TypeCommerce
+}
