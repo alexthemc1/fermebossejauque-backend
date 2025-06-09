@@ -1384,149 +1384,27 @@ app.get('/api/histoires', async (req, res) => {
   }
 });
 
-// Récupérer une histoire spécifique par son ID
-app.get('/api/histoires/:id', async (req, res) => {
-  const id = parseInt(req.params.id);
-  
-  try {
-    const histoire = await prisma.histoire.findUnique({
-      where: { id }
-    });
-    
-    if (!histoire) {
-      return res.status(404).json({ message: 'Histoire non trouvée' });
-    }
-    
-    res.json(histoire);
-  } catch (error) {
-    console.error('Erreur lors de la récupération de l\'histoire:', error);
-    res.status(500).json({ message: 'Erreur serveur' });
-  }
-});
 
-// Créer une nouvelle histoire
-app.post('/api/histoires', async (req, res) => {
-  const { titre, annee, description, imageUrl } = req.body;
-  
-  if (!titre || !annee || !description || !imageUrl) {
-    return res.status(400).json({ message: 'Le titre, l\'année, la description et l\'image sont requis' });
-  }
-  
-  try {
-    const nouvelleHistoire = await prisma.histoire.create({
-      data: {
-        titre,
-        annee: parseInt(annee),
-        description,
-        imageUrl
-      }
-    });
-    
-    res.status(201).json(nouvelleHistoire);
-  } catch (error) {
-    console.error('Erreur lors de la création de l\'histoire:', error);
-    res.status(500).json({ message: 'Erreur serveur' });
-  }
-});
-
-// Mettre à jour une histoire
-app.put('/api/histoires/:id', async (req, res) => {
-  const id = parseInt(req.params.id);
-  const { titre, annee, description, imageUrl } = req.body;
-  
-  try {
-    const histoire = await prisma.histoire.findUnique({
-      where: { id }
-    });
-    
-    if (!histoire) {
-      return res.status(404).json({ message: 'Histoire non trouvée' });
-    }
-    
-    const histoireModifiee = await prisma.histoire.update({
-      where: { id },
-      data: {
-        titre: titre || histoire.titre,
-        annee: annee ? parseInt(annee) : histoire.annee,
-        description: description || histoire.description,
-        imageUrl: imageUrl || histoire.imageUrl
-      }
-    });
-    
-    res.json(histoireModifiee);
-  } catch (error) {
-    console.error('Erreur lors de la mise à jour de l\'histoire:', error);
-    res.status(500).json({ message: 'Erreur serveur' });
-  }
-});
-
-// Supprimer une histoire
-app.delete('/api/histoires/:id', async (req, res) => {
-  const id = parseInt(req.params.id);
-  
-  try {
-    const histoire = await prisma.histoire.findUnique({
-      where: { id }
-    });
-    
-    if (!histoire) {
-      return res.status(404).json({ message: 'Histoire non trouvée' });
-    }
-    
-    await prisma.histoire.delete({
-      where: { id }
-    });
-    
-    res.json({ message: 'Histoire supprimée avec succès' });
-  } catch (error) {
-    console.error('Erreur lors de la suppression de l\'histoire:', error);
-    res.status(500).json({ message: 'Erreur serveur' });
-  }
-});
-
-// Récupérer les histoires par année (optionnel)
-app.get('/api/histoires/annee/:annee', async (req, res) => {
-  const annee = parseInt(req.params.annee);
-  
-  try {
-    const histoires = await prisma.histoire.findMany({
-      where: { annee },
-      orderBy: { id: 'asc' }
-    });
-    
-    res.json(histoires);
-  } catch (error) {
-    console.error('Erreur lors de la récupération des histoires par année:', error);
-    res.status(500).json({ message: 'Erreur serveur' });
-  }
-});
 
 
 // app.listen(3001, () => {
 //   console.log('Serveur backend lancé sur http://localhost:3001');
 // });
 
+
+
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Serveur backend lancé sur le port ${PORT}`);
-  console.log(`🌐 URL: https://fermebossejauque-backend-production.up.railway.app`);
-  
-  // Test de connexion DB au démarrage
-  prisma.$connect()
-    .then(() => console.log('✅ Base de données connectée'))
-    .catch(err => console.error('❌ Erreur DB:', err));
+  console.log(`Serveur backend lancé sur le port ${PORT}`);
 });
 
-// Gestion propre de l'arrêt
 process.on('SIGINT', async () => {
-  console.log('🛑 Arrêt du serveur...');
   await prisma.$disconnect();
   process.exit(0);
 });
 
 process.on('SIGTERM', async () => {
-  console.log('🛑 Arrêt du serveur...');
   await prisma.$disconnect();
   process.exit(0);
 });
