@@ -29,34 +29,6 @@ app.get('/', (req, res) => {
   });
 });
 
-// Test sans base de données
-app.get('/health', (req, res) => {
-  res.status(200).json({
-    status: 'healthy',
-    database: 'connected',
-    timestamp: new Date().toISOString()
-  });
-});
-
-// Test de la base de données
-app.get('/db-test', async (req, res) => {
-  try {
-    await prisma.$queryRaw`SELECT 1`;
-    res.status(200).json({
-      status: 'OK',
-      database: 'connected successfully',
-      timestamp: new Date().toISOString()
-    });
-  } catch (error) {
-    console.error('Database test error:', error);
-    res.status(500).json({
-      status: 'ERROR',
-      database: 'connection failed',
-      error: error.message
-    });
-  }
-});
-
 // Configuration de multer pour les uploads temporaires (création d'annonce)
 const tempStorage = multer.diskStorage({
   destination: function (req, file, cb) {
