@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
   });
 });
 
-// Configuration de multer pour les uploads temporaires (création d'annonce)
+// Configuration de multer pour les uploads temporaires
 const tempStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, '/tmp');
@@ -56,7 +56,7 @@ const uploadTemp = multer({
   fileFilter: fileFilter
 });
 
-// Endpoint pour télécharger une image temporaire (lors de la création d'annonce)
+//  télécharger une image temporaire 
 app.post('/api/upload/temp', uploadTemp.single('image'), async (req, res) => {
   try {
     if (!req.file) {
@@ -79,7 +79,7 @@ app.post('/api/upload/temp', uploadTemp.single('image'), async (req, res) => {
   }
 });
 
-// Endpoint pour télécharger une image pour une annonce existante
+// télécharger une image pour une annonce existante
 app.post('/api/upload/annonce/:id', uploadTemp.single('image'), async (req, res) => {
   try {
     if (!req.file) {
@@ -102,7 +102,7 @@ app.post('/api/upload/annonce/:id', uploadTemp.single('image'), async (req, res)
   }
 });
 
-// Endpoint pour télécharger une image de galerie
+// télécharger une image de galerie
 app.post('/api/upload/galerie/:id', uploadTemp.single('image'), async (req, res) => {
   try {
     if (!req.file) {
@@ -124,7 +124,7 @@ app.post('/api/upload/galerie/:id', uploadTemp.single('image'), async (req, res)
   }
 });
 
-// Endpoint pour télécharger une image de section
+// télécharger une image de section
 app.post('/api/upload/section/:id', uploadTemp.single('image'), async (req, res) => {
   try {
     if (!req.file) {
@@ -539,31 +539,7 @@ app.get('/api/admin/check-auth', async (req, res) => {
   }
 });
 
-// Endpoint pour créer un utilisateur admin
-app.post('/api/admin/setup', async (req, res) => {
-  try {
-    // Vérifier si un utilisateur admin existe déjà
-    const existingUser = await prisma.user.findFirst();
 
-    if (existingUser) {
-      return res.status(400).json({ message: 'Un utilisateur admin existe déjà' });
-    }
-
-    // Créer l'utilisateur admin par défaut
-    const user = await prisma.user.create({
-      data: {
-        username: 'admin',
-        password: 'fermebosse2023',
-        role: 'admin'
-      }
-    });
-
-    res.status(201).json({ message: 'Utilisateur admin créé avec succès' });
-  } catch (error) {
-    console.error('Erreur lors de la création de l\'utilisateur admin:', error);
-    res.status(500).json({ message: 'Erreur serveur' });
-  }
-});
 
 // Récupérer les horaires
 app.get('/api/horaires', async (req, res) => {
@@ -969,32 +945,6 @@ app.get('/api/admin/check-auth', async (req, res) => {
     });
   } catch (error) {
     console.error('Erreur lors de la vérification de l\'authentification:', error);
-    res.status(500).json({ message: 'Erreur serveur' });
-  }
-});
-
-// Endpoint pour créer un utilisateur admin
-app.post('/api/admin/setup', async (req, res) => {
-  try {
-    // Vérifier si un utilisateur admin existe déjà
-    const existingUser = await prisma.user.findFirst();
-
-    if (existingUser) {
-      return res.status(400).json({ message: 'Un utilisateur admin existe déjà' });
-    }
-
-    // Créer l'utilisateur admin par défaut
-    const user = await prisma.user.create({
-      data: {
-        username: 'admin',
-        password: 'fermebosse2023',
-        role: 'admin'
-      }
-    });
-
-    res.status(201).json({ message: 'Utilisateur admin créé avec succès' });
-  } catch (error) {
-    console.error('Erreur lors de la création de l\'utilisateur admin:', error);
     res.status(500).json({ message: 'Erreur serveur' });
   }
 });
